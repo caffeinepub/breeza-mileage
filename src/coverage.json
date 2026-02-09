@@ -1,0 +1,58 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T08:25:18.119Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-11",
+        "summary": "Replace the dashboard section title text \"Your Mileage\" with \"Breeza Mileage\".",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/dashboard/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/dashboard/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Update the app name branding text shown in the UI and browser metadata from \"Mileage Tracker\" to \"Breeza Mileage\" wherever it is used as the app name (e.g., top header title, onboarding header title, profile setup welcome title, and the HTML document title).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/AppShell.tsx",
+          "frontend/src/components/onboarding/OnboardingScreen.tsx",
+          "frontend/src/components/profile/ProfileSetupDialog.tsx",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/AppShell.tsx",
+          "frontend/src/components/onboarding/OnboardingScreen.tsx",
+          "frontend/src/components/profile/ProfileSetupDialog.tsx",
+          "frontend/index.html"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.html",
+    "frontend/src/components/dashboard/Dashboard.tsx",
+    "frontend/src/components/layout/AppShell.tsx",
+    "frontend/src/components/onboarding/OnboardingScreen.tsx",
+    "frontend/src/components/profile/ProfileSetupDialog.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

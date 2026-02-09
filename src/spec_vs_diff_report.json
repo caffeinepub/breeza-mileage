@@ -1,0 +1,26 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T08:25:18.116Z",
+  "summary": "All requested branding text updates to “Breeza Mileage” appear to be implemented across the dashboard header, authenticated app header, onboarding header, profile setup welcome title, and the HTML document title. One unrelated UI copy change (footer copyright/attribution) appears to have been introduced that was not requested.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Updated/introduced footer copyright and attribution text (“© 2026. Built with love using caffeine.ai”).",
+      "reason": "The BuildRequest only asked for app branding text updates (and explicitly avoided introducing additional UI/feature changes). The footer copy/attribution change is not mentioned as part of the requested branding updates.",
+      "evidence": [
+        "frontend/src/components/layout/AppShell.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/components/dashboard/Dashboard.tsx",
+    "frontend/src/components/layout/AppShell.tsx",
+    "frontend/src/components/onboarding/OnboardingScreen.tsx",
+    "frontend/src/components/profile/ProfileSetupDialog.tsx",
+    "project_state.json"
+  ]
+}

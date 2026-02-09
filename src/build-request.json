@@ -1,0 +1,57 @@
+{
+  "kind": "build_request",
+  "title": "Update app branding text to “Breeza Mileage”",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "text": "Replace the dashboard section title text \"Your Mileage\" with \"Breeza Mileage\".",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Replace Your Mileage with Breeza Mileage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the dashboard screen, the header currently showing \"Your Mileage\" now shows \"Breeza Mileage\".",
+        "No other dashboard functionality (stats, filters, list, add fill-up) changes as a result of the text update."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Update the app name branding text shown in the UI and browser metadata from \"Mileage Tracker\" to \"Breeza Mileage\" wherever it is used as the app name (e.g., top header title, onboarding header title, profile setup welcome title, and the HTML document title).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Replace Your Mileage with Breeza Mileage"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The authenticated app header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
+        "The onboarding screen header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
+        "The profile setup dialog title (currently \"Welcome to Mileage Tracker\") is updated to say \"Welcome to Breeza Mileage\".",
+        "The HTML document <title> (currently \"Mileage Tracker - Track Your Car's Fuel Efficiency\") is updated to use \"Breeza Mileage\" as the app name.",
+        "All updated user-facing strings remain in English."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui (these paths are immutable).",
+    "No backend changes are required for this branding-only update."
+  ],
+  "nonGoals": [
+    "Changing any mileage calculation logic, storage, or authentication behavior.",
+    "Introducing new screens, features, or navigation.",
+    "Renaming generated image assets or changing the visual theme."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

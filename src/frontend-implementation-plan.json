@@ -1,0 +1,55 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update branding text to “Breeza Mileage”",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "summary": "Update the dashboard section header from “Your Mileage” to “Breeza Mileage” without changing any dashboard behavior.",
+      "acceptanceCriteria": [
+        "On the dashboard screen, the header currently showing \"Your Mileage\" now shows \"Breeza Mileage\".",
+        "No other dashboard functionality (stats, filters, list, add fill-up) changes as a result of the text update."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/dashboard/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Replace the dashboard header text node \"Your Mileage\" with \"Breeza Mileage\". Ensure no other logic/rendering changes to stats, filters, list, or add fill-up UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Replace all app-name branding strings from “Mileage Tracker” to “Breeza Mileage” across header UI, onboarding, profile setup welcome, and HTML document title.",
+      "acceptanceCriteria": [
+        "The authenticated app header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
+        "The onboarding screen header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
+        "The profile setup dialog title (currently \"Welcome to Mileage Tracker\") is updated to say \"Welcome to Breeza Mileage\".",
+        "The HTML document <title> (currently \"Mileage Tracker - Track Your Car's Fuel Efficiency\") is updated to use \"Breeza Mileage\" as the app name.",
+        "All updated user-facing strings remain in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/AppShell.tsx",
+          "operation": "modify",
+          "description": "Update the authenticated app header title text from \"Mileage Tracker\" to \"Breeza Mileage\" (branding-only change; keep greeting and header behavior unchanged)."
+        },
+        {
+          "path": "frontend/src/components/onboarding/OnboardingScreen.tsx",
+          "operation": "modify",
+          "description": "Update the onboarding header app name from \"Mileage Tracker\" to \"Breeza Mileage\" (do not change hero content, features, or login/help behavior)."
+        },
+        {
+          "path": "frontend/src/components/profile/ProfileSetupDialog.tsx",
+          "operation": "modify",
+          "description": "Update the profile setup dialog title from \"Welcome to Mileage Tracker\" to \"Welcome to Breeza Mileage\" while keeping all form fields, validation, and save behavior unchanged."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the HTML document <title> to use \"Breeza Mileage\" as the app name (e.g., \"Breeza Mileage - Track Your Car's Fuel Efficiency\"); do not change other metadata besides this branding string."
+        }
+      ]
+    }
+  ]
+}
