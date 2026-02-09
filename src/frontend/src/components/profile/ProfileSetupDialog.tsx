@@ -35,9 +35,9 @@ export default function ProfileSetupDialog({ open }: ProfileSetupDialogProps) {
 
   return (
     <Dialog open={open}>
-      <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
+      <DialogContent className="sm:max-w-md bg-surface-elevated" onPointerDownOutside={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Welcome to Breeza Mileage</DialogTitle>
+          <DialogTitle>Welcome to Mileage Tracker</DialogTitle>
           <DialogDescription>
             Let's set up your profile to get started tracking your car's fuel efficiency.
           </DialogDescription>
@@ -51,12 +51,13 @@ export default function ProfileSetupDialog({ open }: ProfileSetupDialogProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoFocus
+              className="bg-background"
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="unitSystem">Preferred Units</Label>
             <Select value={unitSystem} onValueChange={(value: 'metric' | 'imperial') => setUnitSystem(value)}>
-              <SelectTrigger id="unitSystem">
+              <SelectTrigger id="unitSystem" className="bg-background">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>

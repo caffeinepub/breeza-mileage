@@ -1,0 +1,2 @@
+rootProject.name = 'mileage-tracker-twa'
+include ':app'

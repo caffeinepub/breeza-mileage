@@ -1,55 +1,58 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T08:25:18.119Z",
+  "generatedAt": "2026-02-09T09:06:45.404Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 0,
     "items": [
       {
-        "id": "REQ-11",
-        "summary": "Replace the dashboard section title text \"Your Mileage\" with \"Breeza Mileage\".",
-        "status": "implemented",
+        "id": "REQ-1",
+        "summary": "Add generated PWA app icon image assets under `frontend/public/assets/generated/` matching the filenames already referenced by the web manifest and favicon link: `app-icon.dim_192x192.png` and `app-icon.dim_512x512.png`.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/dashboard/Dashboard.tsx"
+          "frontend/public/assets/generated/app-icon.dim_192x192.png",
+          "frontend/public/assets/generated/app-icon.dim_512x512.png"
         ],
-        "matchedFiles": [
-          "frontend/src/components/dashboard/Dashboard.tsx"
-        ]
+        "matchedFiles": []
       },
       {
-        "id": "REQ-12",
-        "summary": "Update the app name branding text shown in the UI and browser metadata from \"Mileage Tracker\" to \"Breeza Mileage\" wherever it is used as the app name (e.g., top header title, onboarding header title, profile setup welcome title, and the HTML document title).",
-        "status": "implemented",
+        "id": "REQ-2",
+        "summary": "Add generated Android TWA icon and splash image assets under `frontend/public/assets/generated/` using the filenames documented in `frontend/android/README.md`: `android-icon-foreground.dim_432x432.png`, `android-icon-background.dim_432x432.png`, and `android-splash.dim_2732x2732.png`.",
+        "status": "missing",
         "plannedFiles": [
-          "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/components/onboarding/OnboardingScreen.tsx",
-          "frontend/src/components/profile/ProfileSetupDialog.tsx",
-          "frontend/index.html"
+          "frontend/public/assets/generated/android-icon-foreground.dim_432x432.png",
+          "frontend/public/assets/generated/android-icon-background.dim_432x432.png",
+          "frontend/public/assets/generated/android-splash.dim_2732x2732.png"
         ],
-        "matchedFiles": [
-          "frontend/src/components/layout/AppShell.tsx",
-          "frontend/src/components/onboarding/OnboardingScreen.tsx",
-          "frontend/src/components/profile/ProfileSetupDialog.tsx",
-          "frontend/index.html"
-        ]
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the Android TWA wrapper drawable resources to use the generated icon/splash assets, following `frontend/android/README.md`: copy/replace `app/src/main/res/drawable/ic_launcher_foreground.png`, `app/src/main/res/drawable/ic_launcher_background.png`, and `app/src/main/res/drawable/splash_image.png` with the corresponding generated PNGs from `frontend/public/assets/generated/` so the launcher icon (`@mipmap/ic_launcher`) and splash screen (`@drawable/splash_image`) render correctly.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/android/app/src/main/res/drawable/ic_launcher_foreground.png",
+          "frontend/android/app/src/main/res/drawable/ic_launcher_background.png",
+          "frontend/android/app/src/main/res/drawable/splash_image.png"
+        ],
+        "matchedFiles": []
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
     "feature_evidence.json",
-    "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
-    "frontend/src/components/dashboard/Dashboard.tsx",
-    "frontend/src/components/layout/AppShell.tsx",
-    "frontend/src/components/onboarding/OnboardingScreen.tsx",
-    "frontend/src/components/profile/ProfileSetupDialog.tsx",
+    "frontend/public/assets/generated/android-icon-background.dim_432x432.png, 432x432",
+    "frontend/public/assets/generated/android-icon-foreground.dim_432x432.png, 432x432",
+    "frontend/public/assets/generated/android-splash.dim_2732x2732.png, 2732x2732",
+    "frontend/public/assets/generated/app-icon.dim_192x192.png, 192x192",
+    "frontend/public/assets/generated/app-icon.dim_512x512.png, 512x512",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

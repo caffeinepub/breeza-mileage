@@ -1,29 +1,48 @@
+import { useGetFillUps } from '../../features/fillups/useFillUps';
 import { useGetCallerUserProfile } from '../../features/profile/useUserProfile';
 import { formatEfficiency, formatDistance, formatFuel } from '../../features/units/units';
-import type { UnitSystem, FillUpEntry } from '../../features/fillups/types';
+import type { UnitSystem } from '../../features/fillups/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Fuel, TrendingUp } from 'lucide-react';
+import { Fuel, Gauge, MapPin, TrendingUp } from 'lucide-react';
 
 interface FillUpListProps {
-  entries: FillUpEntry[];
+  filteredFillUps: Array<{
+    odometer: number;
+    fuelAdded: number;
+    distance?: number;
+    efficiency?: number;
+  }>;
 }
 
-export default function FillUpList({ entries }: FillUpListProps) {
+export default function FillUpList({ filteredFillUps }: FillUpListProps) {
+  const { isLoading } = useGetFillUps();
   const { data: userProfile } = useGetCallerUserProfile();
+
   const unitSystem = (userProfile?.unitSystem as UnitSystem) || 'metric';
 
-  if (entries.length === 0) {
+  if (isLoading) {
     return (
-      <Card>
-        <CardContent className="py-12 text-center">
-          <div className="bg-muted/50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Fuel className="h-8 w-8 text-muted-foreground" />
-          </div>
-          <h3 className="text-lg font-semibold text-foreground mb-2">No Fill-Ups Yet</h3>
-          <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-            Start tracking your fuel efficiency by recording your first fill-up. 
-            Click "Add Fill-Up" above to get started.
+      <div className="space-y-3">
+        {[...Array(3)].map((_, i) => (
+          <Card key={i} className="bg-surface-elevated">
+            <CardContent className="p-4">
+              <div className="h-16 bg-muted rounded animate-pulse" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
+  if (filteredFillUps.length === 0) {
+    return (
+      <Card className="bg-surface-inset border-border">
+        <CardContent className="p-8 text-center">
+          <Fuel className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+          <p className="text-muted-foreground">No fill-ups recorded yet.</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Add your first fill-up to start tracking your mileage.
           </p>
         </CardContent>
       </Card>
@@ -31,66 +50,66 @@ export default function FillUpList({ entries }: FillUpListProps) {
   }
 
   return (
-    <div className="space-y-2">
-      {entries.map((entry, index) => (
-        <Card key={index}>
-          <CardContent className="p-3">
-            <div className="flex items-center gap-3 overflow-x-auto whitespace-nowrap">
-              <div className="flex items-center gap-2 shrink-0">
-                <Badge variant="outline" className="text-xs">
-                  #{entries.length - index}
-                </Badge>
-                {index === 0 && entries.length > 1 && (
-                  <Badge variant="secondary" className="text-xs">Latest</Badge>
-                )}
-              </div>
-              
-              <div className="flex items-center gap-1 shrink-0">
-                <span className="text-xs text-muted-foreground">Odometer:</span>
-                <span className="text-sm font-semibold text-foreground">
-                  {formatDistance(entry.odometer, unitSystem)}
-                </span>
-              </div>
-
-              <div className="w-px h-4 bg-border shrink-0" />
-
-              <div className="flex items-center gap-1 shrink-0">
-                <span className="text-xs text-muted-foreground">Fuel:</span>
-                <span className="text-sm font-semibold text-foreground">
-                  {formatFuel(entry.fuelAdded, unitSystem)}
-                </span>
-              </div>
-
-              {entry.distanceSinceLast !== undefined && (
-                <>
-                  <div className="w-px h-4 bg-border shrink-0" />
-                  
-                  <div className="flex items-center gap-1 shrink-0">
-                    <span className="text-xs text-muted-foreground">Distance:</span>
-                    <span className="text-sm font-semibold text-foreground">
-                      {formatDistance(entry.distanceSinceLast, unitSystem)}
-                    </span>
+    <div className="space-y-3">
+      {filteredFillUps.map((fillUp, index) => (
+        <Card key={index} className="bg-surface-elevated border-border hover:shadow-sm transition-shadow">
+          <CardContent className="p-4">
+            <div className="flex flex-wrap items-center gap-3 text-sm">
+              {/* Odometer */}
+              <div className="flex items-center gap-2 min-w-[140px]">
+                <div className="bg-block-accent-1 p-1.5 rounded">
+                  <Gauge className="h-3.5 w-3.5 text-chart-1" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Odometer</div>
+                  <div className="font-semibold text-foreground">
+                    {formatDistance(fillUp.odometer, unitSystem)}
                   </div>
+                </div>
+              </div>
 
-                  <div className="w-px h-4 bg-border shrink-0" />
-
-                  <div className="flex items-center gap-1 shrink-0">
-                    <span className="text-xs text-muted-foreground">Efficiency:</span>
-                    <span className="text-sm font-semibold text-primary flex items-center gap-1">
-                      <TrendingUp className="h-3 w-3" />
-                      {formatEfficiency(entry.efficiency, unitSystem)}
-                    </span>
+              {/* Fuel Added */}
+              <div className="flex items-center gap-2 min-w-[120px]">
+                <div className="bg-block-accent-2 p-1.5 rounded">
+                  <Fuel className="h-3.5 w-3.5 text-chart-2" />
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Fuel</div>
+                  <div className="font-semibold text-foreground">
+                    {formatFuel(fillUp.fuelAdded, unitSystem)}
                   </div>
-                </>
+                </div>
+              </div>
+
+              {/* Distance */}
+              {fillUp.distance !== undefined && (
+                <div className="flex items-center gap-2 min-w-[120px]">
+                  <div className="bg-block-accent-3 p-1.5 rounded">
+                    <MapPin className="h-3.5 w-3.5 text-chart-3" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-muted-foreground">Distance</div>
+                    <div className="font-semibold text-foreground">
+                      {formatDistance(fillUp.distance, unitSystem)}
+                    </div>
+                  </div>
+                </div>
               )}
 
-              {entry.distanceSinceLast === undefined && index === entries.length - 1 && (
-                <>
-                  <div className="w-px h-4 bg-border shrink-0" />
-                  <span className="text-xs text-muted-foreground italic shrink-0">
-                    First entry - mileage calculated with next fill-up
-                  </span>
-                </>
+              {/* Efficiency Badge */}
+              {fillUp.efficiency !== undefined && (
+                <div className="flex items-center gap-2 ml-auto">
+                  <TrendingUp className="h-3.5 w-3.5 text-primary" />
+                  <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20">
+                    {formatEfficiency(fillUp.efficiency, unitSystem)}
+                  </Badge>
+                </div>
+              )}
+
+              {fillUp.efficiency === undefined && (
+                <Badge variant="outline" className="ml-auto text-muted-foreground border-muted">
+                  First entry
+                </Badge>
               )}
             </div>
           </CardContent>

@@ -1,46 +1,4 @@
 {
   "kind": "feature_evidence_report",
-  "features": [
-    {
-      "featureId": "feature-replace-the-dashboard-section-title-text-your-mileage-with-breeza-mileage",
-      "featureTitle": "Replace the dashboard section title text \"Your Mileage\" with \"Breeza Mileage\".",
-      "files": [
-        "frontend/src/components/dashboard/Dashboard.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-11"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-app-name-branding-text-shown-in-the-ui-and-browser-metadata-from-mileage-tracker-to-breeza-mileage-wherever-it-is-used-as-the-app-name-e-g-top-header-title-onboarding-header-title-profile-setup-welcome-title-and-the-html-document-title",
-      "featureTitle": "Update the app name branding text shown in the UI and browser metadata from \"Mileage Tracker\" to \"Breeza Mileage\" wherever it is used as the app name (e.g., top header title, onboarding header title, profile setup welcome title, and the HTML document title).",
-      "files": [
-        "frontend/index.html",
-        "frontend/src/components/layout/AppShell.tsx",
-        "frontend/src/components/onboarding/OnboardingScreen.tsx",
-        "frontend/src/components/profile/ProfileSetupDialog.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-12"
-      ],
-      "confidence": "high"
-    }
-  ]
+  "features": []
 }

@@ -15,7 +15,7 @@ export default function MileageStats() {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[...Array(4)].map((_, i) => (
-          <Card key={i}>
+          <Card key={i} className="bg-surface-elevated">
             <CardHeader className="pb-3">
               <div className="h-4 bg-muted rounded animate-pulse" />
             </CardHeader>
@@ -52,10 +52,12 @@ export default function MileageStats() {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <Card>
+      <Card className="bg-surface-elevated border-l-4 border-l-chart-1">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <TrendingUp className="h-4 w-4" />
+            <div className="bg-block-accent-1 p-1.5 rounded">
+              <TrendingUp className="h-3.5 w-3.5 text-chart-1" />
+            </div>
             Average
           </CardTitle>
         </CardHeader>
@@ -70,10 +72,12 @@ export default function MileageStats() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-surface-elevated border-l-4 border-l-chart-2">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Award className="h-4 w-4" />
+            <div className="bg-block-accent-2 p-1.5 rounded">
+              <Award className="h-3.5 w-3.5 text-chart-2" />
+            </div>
             Best Tank
           </CardTitle>
         </CardHeader>
@@ -88,10 +92,12 @@ export default function MileageStats() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-surface-elevated border-l-4 border-l-chart-3">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <TrendingDown className="h-4 w-4" />
+            <div className="bg-block-accent-3 p-1.5 rounded">
+              <TrendingDown className="h-3.5 w-3.5 text-chart-3" />
+            </div>
             Worst Tank
           </CardTitle>
         </CardHeader>
@@ -106,10 +112,12 @@ export default function MileageStats() {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="bg-surface-elevated border-l-4 border-l-chart-4">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <MapPin className="h-4 w-4" />
+            <div className="bg-block-accent-4 p-1.5 rounded">
+              <MapPin className="h-3.5 w-3.5 text-chart-4" />
+            </div>
             Total Distance
           </CardTitle>
         </CardHeader>

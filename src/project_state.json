@@ -1,132 +1,45 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
-  "summary": "Android app to calculate and display a car’s (as exact as possible) mileage.",
+  "projectStateVersion": 3,
+  "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [
-    "Intermittent failure when recording a fill-up (user reports: \"Failed to record fill up issue occurs\")."
-  ],
+  "known_issues": [],
   "isFixRequest": false,
-  "existing_features": [
-    {
-      "id": "feature-implement-a-mileage-fuel-efficiency-calculator-workflow-where-a-user-can-record-odometer-readings-and-fuel-added-for-each-fill-up-and-view-computed-mileage-over-time-e-g-km-l-and-l-100km-or-mpg-if-user-selects-miles-gallons",
-      "title": "Implement a mileage (fuel efficiency) calculator workflow where a user can record odometer readings and fuel added for each fill-up and view computed mileage over time (e.g., km/L and L/100km, or MPG if user selects miles/gallons).",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-authenticated-per-user-data-storage-using-internet-identity-so-each-user-s-fill-up-history-is-private-and-persistent",
-      "title": "Add authenticated per-user data storage using Internet Identity so each user’s fill-up history is private and persistent.",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-a-dashboard-ui-that-lists-fill-ups-chronologically-shows-computed-mileage-per-entry-and-includes-basic-filtering-sorting-e-g-by-date-range-newest-oldest",
-      "title": "Create a dashboard UI that lists fill-ups chronologically, shows computed mileage per entry, and includes basic filtering/sorting (e.g., by date range, newest/oldest).",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-provide-a-clear-onboarding-help-section-explaining-how-exact-mileage-is-approximated-from-fill-up-odometer-data-and-how-to-improve-accuracy-e-g-fill-to-same-level-consistent-units-handling-partial-fills",
-      "title": "Provide a clear onboarding/help section explaining how “exact mileage” is approximated from fill-up/odometer data, and how to improve accuracy (e.g., fill to same level, consistent units, handling partial fills).",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-coherent-visual-theme-appropriate-for-a-car-mileage-tracker-colors-typography-spacing-and-component-styling-and-enforce-it-consistently-across-screens-avoid-blue-purple-as-primary-brand-colors",
-      "title": "Apply a coherent visual theme appropriate for a car mileage tracker (colors, typography, spacing, and component styling) and enforce it consistently across screens; avoid blue/purple as primary brand colors.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-generated-static-images-to-support-the-app-s-branding-and-render-them-in-the-ui-from-frontend-public-assets-generated-do-not-serve-images-from-the-backend",
-      "title": "Add generated static images to support the app’s branding and render them in the UI from frontend/public/assets/generated (do not serve images from the backend).",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-dashboard-fill-up-history-list-so-each-fill-up-entry-renders-as-a-compact-single-line-row-one-visual-line-per-entry-rather-than-the-current-multi-line-card-layout",
-      "title": "Update the dashboard fill-up history list so each fill-up entry renders as a compact single-line row (one visual line per entry) rather than the current multi-line card layout.",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-prevent-users-from-submitting-a-new-fill-up-while-the-authenticated-backend-actor-is-not-ready-and-provide-a-clear-actionable-ui-message-when-submission-is-unavailable-e-g-not-signed-in-actor-still-initializing",
-      "title": "Prevent users from submitting a new fill-up while the authenticated backend actor is not ready, and provide a clear, actionable UI message when submission is unavailable (e.g., not signed in, actor still initializing).",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-improve-fill-up-submission-error-handling-so-that-failures-show-a-more-informative-error-message-to-the-user-in-english-and-capture-sufficient-details-in-console-logs-to-diagnose-intermittent-failures",
-      "title": "Improve fill-up submission error handling so that failures show a more informative error message to the user (in English) and capture sufficient details in console logs to diagnose intermittent failures.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-make-the-add-fill-up-mutation-resilient-to-transient-initialization-race-conditions-by-ensuring-it-uses-the-same-actor-readiness-gating-as-read-queries-i-e-do-not-allow-mutation-execution-until-actor-is-present-and-not-fetching-and-avoid-intermittent-failures-immediately-after-login-logout-transitions",
-      "title": "Make the add-fill-up mutation resilient to transient initialization/race conditions by ensuring it uses the same actor readiness gating as read queries (i.e., do not allow mutation execution until actor is present and not fetching), and avoid intermittent failures immediately after login/logout transitions.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-dashboard-section-title-text-your-mileage-with-breeza-mileage",
-      "title": "Replace the dashboard section title text \"Your Mileage\" with \"Breeza Mileage\".",
-      "reqIds": [
-        "REQ-11"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-app-name-branding-text-shown-in-the-ui-and-browser-metadata-from-mileage-tracker-to-breeza-mileage-wherever-it-is-used-as-the-app-name-e-g-top-header-title-onboarding-header-title-profile-setup-welcome-title-and-the-html-document-title",
-      "title": "Update the app name branding text shown in the UI and browser metadata from \"Mileage Tracker\" to \"Breeza Mileage\" wherever it is used as the app name (e.g., top header title, onboarding header title, profile setup welcome title, and the HTML document title).",
-      "reqIds": [
-        "REQ-12"
-      ],
-      "version": 1
-    }
-  ],
+  "imageRequirements": "## Required Images\n- App icon with warm tan/brown palette on light cream background (app-icon.dim_192x192.png, 192x192)\n- App icon with warm tan/brown palette on light cream background; maskable-safe composition (app-icon.dim_512x512.png, 512x512)\n- Android adaptive icon foreground graphic, transparent background (android-icon-foreground.dim_432x432.png, 432x432)\n- Android adaptive icon background graphic (android-icon-background.dim_432x432.png, 432x432)\n- Android splash image with centered app mark on light cream background (android-splash.dim_2732x2732.png, 2732x2732)",
+  "existing_features": [],
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Build an Android app that tells a car’s mileage (fuel efficiency) as accurately as possible.",
+      "summary": "Add an app icon to the installable app build",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Display the history list entries in a single-line layout (compact one-line per fill-up).",
-      "reqIds": [],
+      "summary": "Add generated PWA app icon image assets under `frontend/public/assets/generated/` matching the filenames already referenced by the web manifest and favicon link: `app-icon.dim_192x192.png` and `app-icon.dim_512x512.png`.",
+      "reqIds": [
+        "REQ-1"
+      ],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Update branding text: replace \"Your Mileage\" with \"Breeza Mileage\" across the app UI (and app name where applicable).",
-      "reqIds": [],
+      "summary": "Add generated Android TWA icon and splash image assets under `frontend/public/assets/generated/` using the filenames documented in `frontend/android/README.md`: `android-icon-foreground.dim_432x432.png`, `android-icon-background.dim_432x432.png`, and `android-splash.dim_2732x2732.png`.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Update the Android TWA wrapper drawable resources to use the generated icon/splash assets, following `frontend/android/README.md`: copy/replace `app/src/main/res/drawable/ic_launcher_foreground.png`, `app/src/main/res/drawable/ic_launcher_background.png`, and `app/src/main/res/drawable/splash_image.png` with the corresponding generated PNGs from `frontend/public/assets/generated/` so the launcher icon (`@mipmap/ic_launcher`) and splash screen (`@drawable/splash_image`) render correctly.",
+      "reqIds": [
+        "REQ-3"
+      ],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "Breeza Mileage",
+  "projectName": "Add app icon assets for PWA install and Android TWA wrapper",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

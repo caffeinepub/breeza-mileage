@@ -1,26 +1,48 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T08:25:18.116Z",
-  "summary": "All requested branding text updates to “Breeza Mileage” appear to be implemented across the dashboard header, authenticated app header, onboarding header, profile setup welcome title, and the HTML document title. One unrelated UI copy change (footer copyright/attribution) appears to have been introduced that was not requested.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-09T09:06:45.401Z",
+  "summary": "Diff only updates project_state.json to record pending feature requests; no icon/splash PNG assets were added and no Android drawable resources or manifest references were updated.",
+  "missing_requirements": [
     {
-      "description": "Updated/introduced footer copyright and attribution text (“© 2026. Built with love using caffeine.ai”).",
-      "reason": "The BuildRequest only asked for app branding text updates (and explicitly avoided introducing additional UI/feature changes). The footer copy/attribution change is not mentioned as part of the requested branding updates.",
+      "id": "REQ-1",
+      "requirement": "Add generated PWA app icon image assets under `frontend/public/assets/generated/` matching the filenames already referenced by the web manifest and favicon link: `app-icon.dim_192x192.png` and `app-icon.dim_512x512.png`.",
+      "reason": "No files were added under `frontend/public/assets/generated/`, and no manifest/favicon wiring changes are shown; only `project_state.json` was modified.",
       "evidence": [
-        "frontend/src/components/layout/AppShell.tsx"
+        "project_state.json",
+        "File diff summary shows: Added files: none"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Add generated Android TWA icon and splash image assets under `frontend/public/assets/generated/` using filenames `android-icon-foreground.dim_432x432.png`, `android-icon-background.dim_432x432.png`, and `android-splash.dim_2732x2732.png`.",
+      "reason": "No files were added under `frontend/public/assets/generated/`; only `project_state.json` was modified.",
+      "evidence": [
+        "project_state.json",
+        "File diff summary shows: Added files: none"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Update Android TWA wrapper drawable resources to use the generated icon/splash assets by copying/replacing `ic_launcher_foreground.png`, `ic_launcher_background.png`, and `splash_image.png`.",
+      "reason": "No Android resource files were added or modified; only `project_state.json` was changed.",
+      "evidence": [
+        "project_state.json",
+        "File diff summary shows: Modified files: project_state.json only"
       ]
     }
   ],
-  "confidence": 0.72,
+  "hallucinated_features": [
+    {
+      "description": "Added a new internal request entry `AR-1` (“Add an app icon to the installable app build”) not present as a requirement in the BuildRequest.",
+      "reason": "BuildRequest only specifies REQ-1..REQ-3; `AR-1` introduces an extra request without mapping to any REQ id.",
+      "evidence": [
+        "project_state.json (new_feature_requests includes AR-1 with empty reqIds)"
+      ]
+    }
+  ],
+  "confidence": 0.92,
   "changed_files": [
-    "frontend-file-summaries.txt",
-    "frontend/index.html",
-    "frontend/src/components/dashboard/Dashboard.tsx",
-    "frontend/src/components/layout/AppShell.tsx",
-    "frontend/src/components/onboarding/OnboardingScreen.tsx",
-    "frontend/src/components/profile/ProfileSetupDialog.tsx",
     "project_state.json"
   ]
 }

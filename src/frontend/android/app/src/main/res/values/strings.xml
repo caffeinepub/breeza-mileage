@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mileage Tracker</string>
+    <string name="app_short_name">Mileage</string>
+    <string name="host">YOUR_CANISTER_ID.icp0.io</string>
+    <string name="default_url">https://YOUR_CANISTER_ID.icp0.io/</string>
+</resources>

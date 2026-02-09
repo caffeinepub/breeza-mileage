@@ -1,53 +1,78 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update branding text to “Breeza Mileage”",
+  "title": "Add generated PWA and Android TWA icon/splash assets",
   "requirements": [
     {
-      "id": "REQ-11",
-      "summary": "Update the dashboard section header from “Your Mileage” to “Breeza Mileage” without changing any dashboard behavior.",
+      "id": "REQ-1",
+      "summary": "Add generated PWA app icon PNG assets under frontend/public/assets/generated/ matching manifest/favicon filenames.",
       "acceptanceCriteria": [
-        "On the dashboard screen, the header currently showing \"Your Mileage\" now shows \"Breeza Mileage\".",
-        "No other dashboard functionality (stats, filters, list, add fill-up) changes as a result of the text update."
+        "`frontend/public/assets/generated/app-icon.dim_192x192.png` exists and is a valid PNG image.",
+        "`frontend/public/assets/generated/app-icon.dim_512x512.png` exists and is a valid PNG image.",
+        "`frontend/public/manifest.json` continues to reference `/assets/generated/app-icon.dim_192x192.png` and `/assets/generated/app-icon.dim_512x512.png` and the files load successfully in the browser."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/dashboard/Dashboard.tsx",
-          "operation": "modify",
-          "description": "Replace the dashboard header text node \"Your Mileage\" with \"Breeza Mileage\". Ensure no other logic/rendering changes to stats, filters, list, or add fill-up UI."
+          "path": "frontend/public/assets/generated/app-icon.dim_192x192.png",
+          "operation": "create",
+          "description": "Add the generated 192x192 PNG app icon at `frontend/public/assets/generated/app-icon.dim_192x192.png` so existing manifest references resolve to a valid image."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-icon.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated 512x512 PNG app icon at `frontend/public/assets/generated/app-icon.dim_512x512.png` so existing manifest/favicon references resolve to a valid image."
         }
       ]
     },
     {
-      "id": "REQ-12",
-      "summary": "Replace all app-name branding strings from “Mileage Tracker” to “Breeza Mileage” across header UI, onboarding, profile setup welcome, and HTML document title.",
+      "id": "REQ-2",
+      "summary": "Add generated Android TWA adaptive icon foreground/background and splash PNG assets under frontend/public/assets/generated/ per frontend/android/README.md.",
       "acceptanceCriteria": [
-        "The authenticated app header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
-        "The onboarding screen header title (currently \"Mileage Tracker\") displays \"Breeza Mileage\".",
-        "The profile setup dialog title (currently \"Welcome to Mileage Tracker\") is updated to say \"Welcome to Breeza Mileage\".",
-        "The HTML document <title> (currently \"Mileage Tracker - Track Your Car's Fuel Efficiency\") is updated to use \"Breeza Mileage\" as the app name.",
-        "All updated user-facing strings remain in English."
+        "`frontend/public/assets/generated/android-icon-foreground.dim_432x432.png` exists and is a valid PNG image.",
+        "`frontend/public/assets/generated/android-icon-background.dim_432x432.png` exists and is a valid PNG image.",
+        "`frontend/public/assets/generated/android-splash.dim_2732x2732.png` exists and is a valid PNG image."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/layout/AppShell.tsx",
-          "operation": "modify",
-          "description": "Update the authenticated app header title text from \"Mileage Tracker\" to \"Breeza Mileage\" (branding-only change; keep greeting and header behavior unchanged)."
+          "path": "frontend/public/assets/generated/android-icon-foreground.dim_432x432.png",
+          "operation": "create",
+          "description": "Add the generated Android adaptive icon foreground PNG at `frontend/public/assets/generated/android-icon-foreground.dim_432x432.png` (432x432) for use by the Android TWA wrapper resource replacement step."
         },
         {
-          "path": "frontend/src/components/onboarding/OnboardingScreen.tsx",
-          "operation": "modify",
-          "description": "Update the onboarding header app name from \"Mileage Tracker\" to \"Breeza Mileage\" (do not change hero content, features, or login/help behavior)."
+          "path": "frontend/public/assets/generated/android-icon-background.dim_432x432.png",
+          "operation": "create",
+          "description": "Add the generated Android adaptive icon background PNG at `frontend/public/assets/generated/android-icon-background.dim_432x432.png` (432x432) for use by the Android TWA wrapper resource replacement step."
         },
         {
-          "path": "frontend/src/components/profile/ProfileSetupDialog.tsx",
-          "operation": "modify",
-          "description": "Update the profile setup dialog title from \"Welcome to Mileage Tracker\" to \"Welcome to Breeza Mileage\" while keeping all form fields, validation, and save behavior unchanged."
+          "path": "frontend/public/assets/generated/android-splash.dim_2732x2732.png",
+          "operation": "create",
+          "description": "Add the generated Android splash PNG at `frontend/public/assets/generated/android-splash.dim_2732x2732.png` (2732x2732) for use by the Android TWA wrapper resource replacement step."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Update Android TWA wrapper drawable PNG resources to use the generated icon/splash assets so launcher icon and splash screen render correctly.",
+      "acceptanceCriteria": [
+        "After updating resources, the Android project has `frontend/android/app/src/main/res/drawable/ic_launcher_foreground.png`, `ic_launcher_background.png`, and `splash_image.png` present as valid PNGs.",
+        "The launcher icon continues to reference the adaptive icon defined in `frontend/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml` and renders without missing-resource errors.",
+        "The splash screen continues to reference `@drawable/splash_image` (as configured in `frontend/android/app/src/main/res/drawable/splash_screen.xml` and `AndroidManifest.xml`) and renders without missing-resource errors."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/android/app/src/main/res/drawable/ic_launcher_foreground.png",
+          "operation": "create",
+          "description": "Create/replace Android drawable `ic_launcher_foreground.png` by copying from `frontend/public/assets/generated/android-icon-foreground.dim_432x432.png` as documented in `frontend/android/README.md`."
         },
         {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Update the HTML document <title> to use \"Breeza Mileage\" as the app name (e.g., \"Breeza Mileage - Track Your Car's Fuel Efficiency\"); do not change other metadata besides this branding string."
+          "path": "frontend/android/app/src/main/res/drawable/ic_launcher_background.png",
+          "operation": "create",
+          "description": "Create/replace Android drawable `ic_launcher_background.png` by copying from `frontend/public/assets/generated/android-icon-background.dim_432x432.png` as documented in `frontend/android/README.md`."
+        },
+        {
+          "path": "frontend/android/app/src/main/res/drawable/splash_image.png",
+          "operation": "create",
+          "description": "Create/replace Android drawable `splash_image.png` by copying from `frontend/public/assets/generated/android-splash.dim_2732x2732.png` as documented in `frontend/android/README.md`."
         }
       ]
     }

@@ -1,20 +1,22 @@
 import LoginButton from '../auth/LoginButton';
 import HelpDialog from '../help/HelpDialog';
+import InstallAppButton from '../pwa/InstallAppButton';
 import { Fuel, TrendingUp, BarChart3, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export default function OnboardingScreen() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm">
+      <header className="border-b border-border bg-surface-elevated/80 backdrop-blur-sm shadow-xs">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-primary/10 p-2 rounded-lg">
+            <div className="bg-block-accent-1 p-2 rounded-lg">
               <Fuel className="h-5 w-5 text-primary" />
             </div>
-            <h1 className="text-lg font-bold text-foreground">Breeza Mileage</h1>
+            <h1 className="text-lg font-bold text-foreground">Mileage Tracker</h1>
           </div>
           <div className="flex items-center gap-2">
+            <InstallAppButton />
             <HelpDialog />
             <LoginButton />
           </div>
@@ -39,15 +41,18 @@ export default function OnboardingScreen() {
               Calculate your exact mileage by recording fill-ups and odometer readings. 
               Get insights into your fuel consumption and driving efficiency.
             </p>
-            <LoginButton />
+            <div className="flex items-center justify-center gap-3">
+              <LoginButton />
+              <InstallAppButton />
+            </div>
           </div>
 
           {/* Features */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card>
+            <Card className="bg-surface-elevated border-border">
               <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  <TrendingUp className="h-6 w-6 text-primary" />
+                <div className="bg-block-accent-1 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="h-6 w-6 text-chart-1" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">Accurate Tracking</h3>
                 <p className="text-sm text-muted-foreground">
@@ -56,10 +61,10 @@ export default function OnboardingScreen() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-surface-elevated border-border">
               <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  <BarChart3 className="h-6 w-6 text-primary" />
+                <div className="bg-block-accent-2 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <BarChart3 className="h-6 w-6 text-chart-2" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">Detailed Stats</h3>
                 <p className="text-sm text-muted-foreground">
@@ -68,10 +73,10 @@ export default function OnboardingScreen() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-surface-elevated border-border">
               <CardContent className="pt-6">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-primary" />
+                <div className="bg-block-accent-3 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-chart-3" />
                 </div>
                 <h3 className="font-semibold text-foreground mb-2">Private & Secure</h3>
                 <p className="text-sm text-muted-foreground">
@@ -86,12 +91,15 @@ export default function OnboardingScreen() {
             <p className="text-muted-foreground mb-4">
               Ready to start tracking your fuel efficiency?
             </p>
-            <LoginButton />
+            <div className="flex items-center justify-center gap-3">
+              <LoginButton />
+              <InstallAppButton />
+            </div>
           </div>
         </div>
       </main>
 
-      <footer className="border-t border-border bg-card/30 py-4">
+      <footer className="border-t border-border bg-surface-subtle/60 py-4">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           © 2026. Built with love using{' '}
           <a

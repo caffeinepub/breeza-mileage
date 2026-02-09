@@ -56,6 +56,19 @@ export default {
                     4: 'oklch(var(--chart-4))',
                     5: 'oklch(var(--chart-5))'
                 },
+                surface: {
+                    subtle: 'oklch(var(--surface-subtle))',
+                    elevated: 'oklch(var(--surface-elevated))',
+                    inset: 'oklch(var(--surface-inset))'
+                },
+                block: {
+                    accent: {
+                        1: 'oklch(var(--block-accent-1))',
+                        2: 'oklch(var(--block-accent-2))',
+                        3: 'oklch(var(--block-accent-3))',
+                        4: 'oklch(var(--block-accent-4))'
+                    }
+                },
                 sidebar: {
                     DEFAULT: 'oklch(var(--sidebar))',
                     foreground: 'oklch(var(--sidebar-foreground))',

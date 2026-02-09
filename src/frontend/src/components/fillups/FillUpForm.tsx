@@ -106,13 +106,13 @@ export default function FillUpForm() {
           Add Fill-Up
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md bg-surface-elevated">
         <DialogHeader>
           <DialogTitle>Record Fill-Up</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           {disabledMessage && (
-            <div className="flex items-center gap-2 p-3 rounded-lg bg-muted text-muted-foreground text-sm">
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-surface-inset border border-border text-muted-foreground text-sm">
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{disabledMessage}</span>
             </div>
@@ -129,7 +129,7 @@ export default function FillUpForm() {
               placeholder={`e.g., ${unitSystem === 'metric' ? '50000' : '31000'}`}
               value={odometer}
               onChange={(e) => setOdometer(e.target.value)}
-              className={errors.odometer ? 'border-destructive' : ''}
+              className={errors.odometer ? 'border-destructive' : 'bg-background'}
               disabled={!canSubmit}
             />
             {errors.odometer && (
@@ -155,7 +155,7 @@ export default function FillUpForm() {
               placeholder={`e.g., ${unitSystem === 'metric' ? '45.5' : '12.0'}`}
               value={fuelAdded}
               onChange={(e) => setFuelAdded(e.target.value)}
-              className={errors.fuelAdded ? 'border-destructive' : ''}
+              className={errors.fuelAdded ? 'border-destructive' : 'bg-background'}
               disabled={!canSubmit}
             />
             {errors.fuelAdded && (
