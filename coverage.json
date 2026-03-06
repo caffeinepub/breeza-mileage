@@ -1,0 +1,75 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T10:40:21.364Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-15",
+        "summary": "Extend the fill-up data model to store a total fuel cost value per fill-up so that price per liter can be derived.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Update the fill-up creation flow UI to capture total fuel cost and submit it alongside odometer and fuel added, while keeping user-facing text in English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/fillups/FillUpForm.tsx",
+          "frontend/src/features/fillups/validation.ts",
+          "frontend/src/features/fillups/types.ts",
+          "frontend/src/features/fillups/useFillUps.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/fillups/FillUpForm.tsx",
+          "frontend/src/features/fillups/validation.ts",
+          "frontend/src/features/fillups/types.ts",
+          "frontend/src/features/fillups/useFillUps.ts"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Compute and display \"Price per liter\" for each fill-up entry in the Fill-Up History list based on stored total cost divided by stored liters, with sensible formatting and graceful fallback when cost is missing.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/fillups/types.ts",
+          "frontend/src/features/fillups/useFillUps.ts",
+          "frontend/src/components/dashboard/FillUpList.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/fillups/types.ts",
+          "frontend/src/features/fillups/useFillUps.ts",
+          "frontend/src/components/dashboard/FillUpList.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/dashboard/FillUpList.tsx",
+    "frontend/src/components/fillups/FillUpForm.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/features/fillups/types.ts",
+    "frontend/src/features/fillups/useFillUps.ts",
+    "frontend/src/features/fillups/validation.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "kind": "build_request",
+  "title": "Add price per liter to fill-ups (input, storage, and display)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "text": "Extend the fill-up data model to store a total fuel cost value per fill-up so that price per liter can be derived.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Add price per liter also"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend `FillUp` records include a new numeric field representing total fuel cost for that fill-up.",
+        "The `addFillUp` backend method accepts the new cost parameter and persists it with the fill-up entry.",
+        "Existing stored fill-ups (created before this change) remain readable without trapping; missing cost values are handled safely (e.g., treated as absent/optional)."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Update the fill-up creation flow UI to capture total fuel cost and submit it alongside odometer and fuel added, while keeping user-facing text in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Add price per liter also"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`Record Fill-Up` form includes a new numeric input labeled \"Total cost\" (English) and validates it as a non-negative number when provided (or required if the implementation chooses to require it).",
+        "On submit, the frontend sends the cost value to the backend together with odometer and fuel added (using the same unit conversion approach already used for odometer/fuel).",
+        "If the backend rejects the request, the existing toast-based error handling continues to show an English error message."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Compute and display \"Price per liter\" for each fill-up entry in the Fill-Up History list based on stored total cost divided by stored liters, with sensible formatting and graceful fallback when cost is missing.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Add price per liter also"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Fill-up entries in the history list display a new field labeled \"Price per liter\" when total cost is available for that entry.",
+        "Displayed price per liter is computed as (totalCost / fuelAddedInLiters) and formatted to a readable fixed decimal format.",
+        "For fill-ups without a stored cost value, the UI does not break and shows an English fallback (e.g., \"N/A\") or hides the field consistently."
+      ]
+    }
+  ],
+  "constraints": [
+    "Respect the single-actor backend architecture; keep Motoko logic in `backend/main.mo`.",
+    "Do not edit any files under `frontend/src/components/ui` or other immutable paths listed in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Do not add third-party payments, currency conversion, or external pricing APIs.",
+    "Do not add new authentication providers (Internet Identity only).",
+    "Do not redesign unrelated dashboard components beyond what is necessary to capture and display price per liter."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

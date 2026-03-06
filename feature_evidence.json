@@ -1,0 +1,48 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-fill-up-creation-flow-ui-to-capture-total-fuel-cost-and-submit-it-alongside-odometer-and-fuel-added-while-keeping-user-facing-text-in-english",
+      "featureTitle": "Update the fill-up creation flow UI to capture total fuel cost and submit it alongside odometer and fuel added, while keeping user-facing text in English.",
+      "files": [
+        "frontend/src/components/fillups/FillUpForm.tsx",
+        "frontend/src/features/fillups/types.ts",
+        "frontend/src/features/fillups/useFillUps.ts",
+        "frontend/src/features/fillups/validation.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-compute-and-display-price-per-liter-for-each-fill-up-entry-in-the-fill-up-history-list-based-on-stored-total-cost-divided-by-stored-liters-with-sensible-formatting-and-graceful-fallback-when-cost-is-missing",
+      "featureTitle": "Compute and display \"Price per liter\" for each fill-up entry in the Fill-Up History list based on stored total cost divided by stored liters, with sensible formatting and graceful fallback when cost is missing.",
+      "files": [
+        "frontend/src/components/dashboard/FillUpList.tsx",
+        "frontend/src/features/fillups/types.ts",
+        "frontend/src/features/fillups/useFillUps.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

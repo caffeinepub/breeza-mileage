@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-update-the-fill-up-creation-flow-ui-to-capture-total-fuel-cost-and-submit-it-alongside-odometer-and-fuel-added-while-keeping-user-facing-text-in-english",
+      "title": "Update the fill-up creation flow UI to capture total fuel cost and submit it alongside odometer and fuel added, while keeping user-facing text in English.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-compute-and-display-price-per-liter-for-each-fill-up-entry-in-the-fill-up-history-list-based-on-stored-total-cost-divided-by-stored-liters-with-sensible-formatting-and-graceful-fallback-when-cost-is-missing",
+      "title": "Compute and display \"Price per liter\" for each fill-up entry in the Fill-Up History list based on stored total cost divided by stored liters, with sensible formatting and graceful fallback when cost is missing.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add/display price per liter",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Extend the fill-up data model to store a total fuel cost value per fill-up so that price per liter can be derived.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Add price per liter to fill-ups (input, storage, and display)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

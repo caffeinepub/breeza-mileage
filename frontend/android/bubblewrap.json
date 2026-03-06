@@ -1,0 +1,40 @@
+{
+  "packageId": "com.mileagetracker.twa",
+  "host": "YOUR_CANISTER_ID.icp0.io",
+  "name": "Mileage Tracker",
+  "launcherName": "Mileage Tracker",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#8B6F47",
+  "backgroundColor": "#FBF8F3",
+  "startUrl": "/",
+  "iconUrl": "/assets/generated/app-icon.dim_512x512.png",
+  "maskableIconUrl": "/assets/generated/app-icon.dim_512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "appVersionCode": 1,
+  "appVersion": "1.0.0",
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://YOUR_CANISTER_ID.icp0.io/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableNotifications": false,
+  "isChromeOSOnly": false,
+  "minSdkVersion": 21,
+  "targetSdkVersion": 33,
+  "compileSdkVersion": 33
+}

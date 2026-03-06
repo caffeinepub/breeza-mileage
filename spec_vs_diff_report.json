@@ -1,0 +1,77 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T10:40:21.361Z",
+  "summary": "Backend and frontend changes largely implement total fuel cost capture/storage and compute price-per-liter, but there are likely UI labeling/formatting mismatches with the BuildRequest and several unrelated features were added.",
+  "missing_requirements": [
+    {
+      "id": "REQ-16",
+      "requirement": "Record Fill-Up form includes a new numeric input labeled \"Total cost\" (English).",
+      "reason": "The diff shows new state/validation for `totalFuelCost`, but the provided FillUpForm.tsx snippet is truncated before the JSX; the label text for the new input cannot be verified from the diff evidence.",
+      "evidence": [
+        "frontend/src/components/fillups/FillUpForm.tsx (truncated)",
+        "frontend/src/features/fillups/validation.ts"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "requirement": "Fill-up history entries display a new field labeled \"Price per liter\" when total cost is available.",
+      "reason": "The FillUpList snippet shows the label as \"Price/L\" rather than \"Price per liter\". This does not meet the explicit label requirement as written.",
+      "evidence": [
+        "frontend/src/components/dashboard/FillUpList.tsx (shows label \"Price/L\")"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "requirement": "Displayed price per liter is formatted to a readable fixed decimal format.",
+      "reason": "The hook computes `pricePerLiter`, but the rendering/formatting code in FillUpList is truncated right where the value would be displayed, so fixed-decimal formatting cannot be confirmed from the diff evidence.",
+      "evidence": [
+        "frontend/src/features/fillups/useFillUps.ts (computes pricePerLiter)",
+        "frontend/src/components/dashboard/FillUpList.tsx (truncated at display)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added a backend migration module and integrated actor migration wiring.",
+      "reason": "BuildRequest did not ask for a migration system/module; it only required old fill-ups remain readable without trapping. The diff adds a dedicated `backend/migration.mo` and migration integration in `backend/main.mo`.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo (with migration = Migration.run)"
+      ]
+    },
+    {
+      "description": "InstallAppButton integration / PWA-related changes (manifest link + service worker registration).",
+      "reason": "Not part of requested price-per-liter feature set and explicitly outside necessary dashboard changes.",
+      "evidence": [
+        "frontend-file-summaries.txt (mentions InstallAppButton in AppShell/Onboarding and service worker registration in frontend/index.html)"
+      ]
+    },
+    {
+      "description": "Added/changed help and onboarding/dashboard styling and other UI/UX changes unrelated to recording/displaying price per liter.",
+      "reason": "BuildRequest non-goal: do not redesign unrelated dashboard components beyond what is necessary. The summary indicates multiple unrelated component/style updates.",
+      "evidence": [
+        "frontend-file-summaries.txt (mentions changes to HelpContent, HelpDialog, OnboardingScreen, ProfileSetupDialog, FiltersBar, Dashboard, index.css warm earth-tone OKLCH tokens, etc.)"
+      ]
+    },
+    {
+      "description": "Added BigInt-safe nanosecond timestamp conversion and additional sorting/NaN handling behavior in fill-up fetching.",
+      "reason": "Not requested by the BuildRequest; it is an extra enhancement beyond cost capture and price-per-liter display.",
+      "evidence": [
+        "frontend/src/features/fillups/useFillUps.ts (nanosToMillis, NaN handling, sorting)"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/dashboard/FillUpList.tsx",
+    "frontend/src/components/fillups/FillUpForm.tsx",
+    "frontend/src/features/fillups/types.ts",
+    "frontend/src/features/fillups/useFillUps.ts",
+    "frontend/src/features/fillups/validation.ts",
+    "project_state.json"
+  ]
+}

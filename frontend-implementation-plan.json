@@ -1,0 +1,64 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add total cost input and price-per-liter display for fill-ups",
+  "requirements": [
+    {
+      "id": "REQ-16",
+      "summary": "Capture total fuel cost in the Record Fill-Up UI and submit it with the existing fill-up fields (English UI text + validation + toast errors).",
+      "acceptanceCriteria": [
+        "\"Record Fill-Up\" form includes a numeric input labeled \"Total cost\" and validates it as a non-negative number (required or optional).",
+        "On submit, the frontend sends the cost value to the backend together with odometer and fuel added, using the same unit conversion approach already used for odometer/fuel.",
+        "If the backend rejects the request, the existing toast-based error handling continues to show an English error message."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/fillups/FillUpForm.tsx",
+          "operation": "modify",
+          "description": "Add a new \"Total cost\" numeric field to the Record Fill-Up dialog, including local state, disabled-state behavior consistent with existing fields, and submission payload including totalFuelCost. Use existing shadcn-ui form primitives (Input/Label/Button/Dialog) already used in this file. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/fillups/validation.ts",
+          "operation": "modify",
+          "description": "Extend fill-up form validation to include total cost (non-negative number; align required/optional decision with the form behavior) and return an English validation message when invalid."
+        },
+        {
+          "path": "frontend/src/features/fillups/types.ts",
+          "operation": "modify",
+          "description": "Extend the fill-up form-related types to include totalFuelCost (string in form data and/or number in entry type as appropriate) so the new input and submission payload are typed."
+        },
+        {
+          "path": "frontend/src/features/fillups/useFillUps.ts",
+          "operation": "modify",
+          "description": "Update the add-fill-up mutation to accept totalFuelCost and pass it into the backend addFillUp call, while preserving the existing actor readiness checks and query invalidation flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Compute and display Price per liter in the Fill-Up History list using total cost divided by liters, with sensible formatting and fallback when cost is missing.",
+      "acceptanceCriteria": [
+        "Fill-up entries in the history list display a new field labeled \"Price per liter\" when total cost is available for that entry.",
+        "Displayed price per liter is computed as (totalCost / fuelAddedInLiters) and formatted to a readable fixed decimal format.",
+        "For fill-ups without a stored cost value, the UI does not break and shows an English fallback (e.g., \"N/A\") or hides the field consistently."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/fillups/types.ts",
+          "operation": "modify",
+          "description": "Extend FillUpEntry to carry totalFuelCost (and optionally a derived pricePerLiter field) so the history list can render it without changing unrelated features."
+        },
+        {
+          "path": "frontend/src/features/fillups/useFillUps.ts",
+          "operation": "modify",
+          "description": "When mapping backend FillUp records to FillUpEntry, include totalFuelCost when present and compute pricePerLiter as totalFuelCost / fuelAdded (liters). Handle missing/invalid/zero values safely so older fill-ups remain renderable (e.g., omit derived field when cost is absent)."
+        },
+        {
+          "path": "frontend/src/components/dashboard/FillUpList.tsx",
+          "operation": "modify",
+          "description": "Update the Fill-Up History rendering to show a new \"Price per liter\" field per entry when available, formatted with a fixed decimal precision, and a consistent English fallback (e.g., \"N/A\") when missing. Use existing shadcn-ui Card/Badge patterns already in the file. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}
